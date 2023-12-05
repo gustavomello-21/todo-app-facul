@@ -1,5 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const mysql = require("mysql2")
 
 const app = express()
 
@@ -12,6 +13,10 @@ app.get("/", (req, res) => {
     res.render('home')
 })
 
-app.listen(3000, () => {
-    console.log("Server is running")
+const conexao = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "root123",
+    database: "todoapp",
+    port: 3306
 })
