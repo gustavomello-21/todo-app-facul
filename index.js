@@ -30,8 +30,9 @@ app.get("/", (req, res) => {
         })
 
         console.log(tarefas)
+
+        res.render('home', { tarefas })
     })
-    res.render('home')
 })
 
 //rotas
