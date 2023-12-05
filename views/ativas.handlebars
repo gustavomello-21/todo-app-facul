@@ -3,18 +3,10 @@
     {{#each tarefas}}
       <div class="tarefa">
         <form action="">
-          {{#if this.completa}}
           <div>
-            <input type="checkbox" id="tarefa-{{this.id}}" checked onchange="descompletarTarefa({{thid.id}})">
+            <input type="checkbox" id="tarefa-{{this.id}}" onchange="completarTarefa({{this.id}})">
             <label for="tarefa-{{thid.id}}">{{this.descricao}}</label>
           </div>
-          {{else}}
-            <div>
-              <input type="checkbox" id="tarefa-{{this.id}}" onchange="completarTarefa({{this.id}})">
-              <label for="tarefa-{{thid.id}}">{{this.descricao}}</label>
-            </div>
-          {{/if}}
-
           <button>
             <img src="/imagens/x-icon.png" alt="icone de x para excluir uma tarefa">
           </button>
