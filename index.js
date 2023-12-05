@@ -14,6 +14,23 @@ app.use(express.urlencoded({
 }))
 
 app.get("/", (req, res) => {
+    const sql = 'SELECT * FROM tarefas'
+
+    conexao.query(sql, (error, dados) => {
+        if (error) {
+            return console.log(error)
+        }
+
+        const tarefas = dados.map((dado) => {
+            return {
+                id: dado.id,
+                descricao:dado.descricao,
+                completa: dado.completa === 0 ? false : true
+            }
+        })
+
+        console.log(tarefas)
+    })
     res.render('home')
 })
 
