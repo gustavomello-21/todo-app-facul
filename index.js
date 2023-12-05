@@ -29,13 +29,28 @@ app.get("/", (req, res) => {
             }
         })
 
-        console.log(tarefas)
-
         res.render('home', { tarefas })
     })
 })
 
 //rotas
+app.post('/completar', (req, res) => {
+    const id = req.body.id
+
+    const sql = `
+        UPDATE tarefas
+        SET completa = '1'
+        WHERE id = ${id}
+    `
+
+    conexao.query(sql, (error) => {
+        if (error) {
+            return console.log(error)
+        }
+
+        res.redirect('/')
+    })
+})
 app.post('/criar', (req, res) => {
     const descricao = req.body.descricao
     const completa = 0
