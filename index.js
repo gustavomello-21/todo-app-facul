@@ -14,9 +14,21 @@ app.get("/", (req, res) => {
 })
 
 const conexao = mysql.createConnection({
-    host: "localhost",
+    host: "172.17.0.2",
     user: "root",
     password: "root123",
     database: "todoapp",
     port: 3306
+})
+
+conexao.connect((error) => {
+    if (error) {
+        return console.log(error)
+    }
+
+    console.log("Conexão bem sucedida com o banco")
+
+    app.listen(3000, () => {
+        console.log("Server is running")
+    })
 })
