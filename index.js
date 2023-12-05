@@ -9,8 +9,32 @@ app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 
+app.use(express.urlencoded({
+    extended: true
+}))
+
 app.get("/", (req, res) => {
     res.render('home')
+})
+
+//rotas
+app.post('/criar', (req, res) => {
+    const descricao = req.body.descricao
+    const completa = 0
+
+    const sql = `
+        INSERT INTO tarefas(descricao, completa)
+        VALUES ('${descricao}', '${completa}')
+    `
+
+    conexao.query(sql, (error) => {
+        if (error) {
+            return console.log(error)
+
+        }
+
+        res.redirect('/')
+    })
 })
 
 const conexao = mysql.createConnection({
